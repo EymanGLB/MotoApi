@@ -10,11 +10,11 @@ const props = defineProps({
 })
 
 const ManufacturerMap = {
-  'yamaha': 'bg-blue-100 border-blue-950 text-blue-950 dark:bg-slate-950 dark:border-blue-100 dark:text-blue-100',
-  'suzuki': 'bg-yellow-100 border-yellow-950 text-yellow-950 dark:bg-slate-950 dark:border-yellow-100 dark:text-yellow-100',
-  'kawasaki': 'bg-emerald-100 border-emerald-950 text-emerald-950 dark:bg-slate-950 dark:border-emerald-100 dark:text-emerald-100',
-  'honda': 'bg-red-100 border-red-950 text-red-950 dark:bg-slate-950 dark:border-red-100 dark:text-red-100',
-  'ktm': 'bg-orange-100 border-orange-950 text-orange-950 dark:bg-slate-950 dark:border-orange-100 dark:text-orange-100'
+  'yamaha': 'bg-blue-100 border-blue-950 text-blue-950 dark:bg-slate-900 dark:border-blue-100 dark:text-blue-100',
+  'suzuki': 'bg-yellow-100 border-yellow-950 text-yellow-950 dark:bg-slate-900 dark:border-yellow-100 dark:text-yellow-100',
+  'kawasaki': 'bg-emerald-100 border-emerald-950 text-emerald-950 dark:bg-slate-900 dark:border-emerald-100 dark:text-emerald-100',
+  'honda': 'bg-red-100 border-red-950 text-red-950 dark:bg-slate-900 dark:border-red-100 dark:text-red-100',
+  'ktm': 'bg-orange-100 border-orange-950 text-orange-950 dark:bg-slate-900 dark:border-orange-100 dark:text-orange-100'
 }
 
 const make = computed(() => {

@@ -40,7 +40,8 @@ const labelName = computed(
         @input="$emit('update:modelValue', $event.target.value)"
         type="text"
         :placeholder="placeholder"
-        class="text-emerald-950 px-2 py-0.5 rounded border-slate-300 border outline-emerald-400"
+        class="text-emerald-950 px-2 py-0.5 rounded border-slate-300 border outline-emerald-400 focus:border-slate-950
+        dark:bg-slate-800 dark:text-slate-50"
         :id="name"
     />
   </div>

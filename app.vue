@@ -8,8 +8,8 @@
 </script>
 
 <template>
+  <Button :uppercase="true" @click="toggleTheme" color="cyan">{{colorMode.value == 'dark' ? 'light' : 'dark'}} mode</Button>
   <NuxtLayout>
-    <Button :uppercase="true" @click="toggleTheme" color="cyan">{{colorMode.value}} mode</Button>
     <NuxtPage/>
   </NuxtLayout>
 </template>
