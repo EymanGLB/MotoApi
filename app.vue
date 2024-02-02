@@ -1,5 +1,6 @@
 <script setup>
 import InputText from "~/components/atoms/InputText.vue";
+import Card from "~/components/atoms/Card.vue";
 
 const manufacturer = ref('')
 const model = ref('')
@@ -11,6 +12,7 @@ function onSubmit() {
   } else {
     showError.value = false
     getMoto()
+    console.log(motos)
   }
 }
 
@@ -23,7 +25,6 @@ const motos = ref()
 
 async function getMoto() {
   const api = `https://api.api-ninjas.com/v1/motorcycles?make=${manufacturer.value}&model=${model.value}`
-  console.log(manufacturer.value, model.value)
   try {
     const response = await fetch(api, {headers});
     motos.value = await response.json();
@@ -47,19 +48,9 @@ async function getMoto() {
           boxes</p>
       </template>
       <template v-else>
-        <div class="flex flex-col gap-5 mx-5">
-          <div v-for="(moto, index) in motos" :key="index" class="px-4 py-2 shadow-xl rounded bg-slate-200 border border-slate-950 text-slate-800">
-            <p>{{ moto.make }}</p>
-            <p>{{ moto.type }}</p>
-            <p>{{ moto.model }}</p>
-            <p>{{ moto.year }}</p>
-            <p>{{ moto.engine }}</p>
-            <p>{{ moto.power }}</p>
-            <p>{{ moto.torque }}</p>
-            <p>{{ moto.cooling }}</p>
-            <p>{{ moto.gearbox }}</p>
-            <p>{{ moto.fuel_capacity }}</p>
-            <p>{{ moto.starter }}</p>
+        <div class="flex flex-col justify-between gap-10 mx-5 py-10">
+          <div v-for="(moto, index) in motos" :key="index">
+            <Card :moto="moto" />
           </div>
         </div>
       </template>
