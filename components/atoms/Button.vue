@@ -37,7 +37,6 @@ const VariantMap = {
        disabled:cursor-not-allowed transition-colors text-bold "
       :disabled="isDisabled"
       type="submit"
-      v-bind="$attrs"
   >
     <slot />
   </component>

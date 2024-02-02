@@ -1,6 +1,7 @@
 <script setup>
 import InputText from "~/components/atoms/InputText.vue";
 import Card from "~/components/atoms/Card.vue";
+import Button from "~/components/atoms/Button.vue";
 
 const manufacturer = ref('')
 const model = ref('')
@@ -41,7 +42,7 @@ async function getMoto() {
         <InputText name="Manufacturer" placeholder="Yamaha" v-model:model-value="manufacturer"/>
         <InputText name="Model" placeholder="XTZ 660" v-model:model-value="model"/>
 
-        <Button content="Search" uppercase> hola </Button>
+        <Button content="Search" :uppercase="true">Search</Button>
       </form>
       <template v-if="showError">
         <p class="bg-red-400 text-red-950 rounded m-5 border border-red-950 px-5">You have to fill all the text
