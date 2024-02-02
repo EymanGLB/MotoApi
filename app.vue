@@ -40,7 +40,7 @@ async function getMoto() {
         <InputText name="Manufacturer" placeholder="Yamaha" v-model:model-value="manufacturer"/>
         <InputText name="Model" placeholder="XTZ 660" v-model:model-value="model"/>
 
-        <Button content="Search" uppercase> hola </Button>
+        <!--<Button content="Search" uppercase> hola </Button> -->
       </form>
       <template v-if="showError">
         <p class="bg-red-400 text-red-950 rounded m-5 border border-red-950 px-5">You have to fill all the text
