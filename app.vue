@@ -41,7 +41,7 @@ async function getMoto() {
         <InputText name="Manufacturer" placeholder="Yamaha" v-model:model-value="manufacturer"/>
         <InputText name="Model" placeholder="XTZ 660" v-model:model-value="model"/>
 
-        <button @submit="onSubmit">SEARCH</button>
+        <Button content="Search" uppercase> hola </Button>
       </form>
       <template v-if="showError">
         <p class="bg-red-400 text-red-950 rounded m-5 border border-red-950 px-5">You have to fill all the text
@@ -52,20 +52,6 @@ async function getMoto() {
           <div v-for="(moto, index) in motos" :key="index">
             <Card :moto="moto" />
           </div>
-          <!--          <div v-for="(moto, index) in motos" :key="index" class="px-4 py-2 shadow-xl rounded bg-slate-200 border border-slate-950 text-slate-800">
-                      {{console.log(typeof motos)}}
-                      <p>{{ moto.make }}</p>
-                      <p>{{ moto.type }}</p>
-                      <p>{{ moto.model }}</p>
-                      <p>{{ moto.year }}</p>
-                      <p>{{ moto.engine }}</p>
-                      <p>{{ moto.power }}</p>
-                      <p>{{ moto.torque }}</p>
-                      <p>{{ moto.cooling }}</p>
-                      <p>{{ moto.gearbox }}</p>
-                      <p>{{ moto.fuel_capacity }}</p>
-                      <p>{{ moto.starter }}</p>
-                    </div>-->
         </div>
       </template>
     </div>
