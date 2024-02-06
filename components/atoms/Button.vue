@@ -52,10 +52,11 @@ const sizeMap = {
         `uppercase ${colorMap[color.toLowerCase()]} ${sizeMap[size.toLowerCase()]}`
         : `${colorMap[color.toLowerCase()]} ${sizeMap[size.toLowerCase()]}`"
       class="w-fit rounded-xl my-2 mx-2 tracking-wider shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]
-       disabled:cursor-not-allowed transition-colors text-bold "
+       disabled:cursor-not-allowed transition-colors text-bold disabled:bg-slate-200
+       disabled:hover:text-slate-500 disabled:dark:bg-slate-700 disabled:dark:text-slate-400"
       :disabled="isDisabled"
       type="submit"
   >
-    <slot />
+    <slot/>
   </component>
 </template>

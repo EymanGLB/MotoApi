@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <Button :uppercase="true" @click="toggleTheme" color="cyan">{{colorMode.value == 'dark' ? 'light' : 'dark'}} mode</Button>
+  <Button :uppercase="true" @click="toggleTheme" color="cyan">{{ colorMode.value == 'dark' ? 'light' : 'dark'}} mode</Button>
   <NuxtLayout>
     <NuxtPage/>
   </NuxtLayout>
