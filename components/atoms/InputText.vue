@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {computed} from "vue";
+
+import {watch} from "vue";
 
 const props = defineProps({
   name: {
@@ -10,21 +11,22 @@ const props = defineProps({
     type: String,
     required: true
   },
-  modelValue: {
-    type: String,
-    required: true,
-    default: ''
-  }
+  shouldReset: Boolean
 })
 
-const labelName = computed(
-    () => {
-      const firstLetter = props.name!.charAt(0).toUpperCase();
-      const remainingLetters = props.name!.slice(1);
-      return firstLetter + remainingLetters;
-    }
-)
+const localValue = ref('')
+const emitValue = () => {
+  emit('update:modelValue', localValue.value)
+}
+const emit = defineEmits(['update:modelValue'])
 
+// Wathc for changes on the shouldReset value
+watch(() => props.shouldReset, (newValue) => {
+  if (newValue) {
+    // Reset the input value when the prop is true
+    localValue.value = '';
+  }
+});
 </script>
 
 <template>
@@ -33,10 +35,11 @@ const labelName = computed(
         :for="name"
         class="font-bold"
     >
-      {{ labelName }}:
+      {{ name }}:
     </label>
     <input
-        @input="$emit('update:modelValue', $event.target.value)"
+        v-model="localValue"
+        @input="emitValue"
         type="text"
         :placeholder="placeholder"
         class="text-emerald-950 px-2 py-0.5 rounded border-slate-300 border outline-emerald-400 focus:border-slate-950

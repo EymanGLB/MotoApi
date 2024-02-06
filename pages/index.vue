@@ -16,7 +16,8 @@ const handleFormSubmit = (values) => {
   manufacturer.value = values.manufacturer
   model.value = values.model
 
-  getMoto()
+  //getMoto()
+  console.log(model.value, manufacturer.value)
 }
 
 async function getMoto() {
