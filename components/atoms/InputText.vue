@@ -17,7 +17,6 @@ const props = defineProps({
   }
 })
 
-
 const labelName = computed(
     () => {
       const firstLetter = props.name!.charAt(0).toUpperCase();
@@ -29,7 +28,7 @@ const labelName = computed(
 </script>
 
 <template>
-  <div class="w-fit flex flex-row gap-5 items-center">
+  <div class="w-auto flex flex-row justify-between items-center">
     <label
         :for="name"
         class="font-bold"
