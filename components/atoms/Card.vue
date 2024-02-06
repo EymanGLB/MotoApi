@@ -1,11 +1,14 @@
 <script setup lang="ts">
 
-import {computed} from "vue";
-
 const props = defineProps({
   moto: {
     type: Object,
     required: true
+  },
+  make: {
+    type: String,
+    required: false,
+    default: 'yamaha'
   }
 })
 
@@ -17,40 +20,14 @@ const ManufacturerMap = {
   'ktm': 'bg-orange-100 border-orange-950 text-orange-950 dark:bg-slate-900 dark:border-orange-100 dark:text-orange-100'
 }
 
-const make = computed(() => {
-  return props.moto.make.toString().toLowerCase();
-})
-
-const imageSrc = computed(() => {
-  let img;
-  if (make.value in ManufacturerMap) {
-    img = "/images/" + make.value + ".svg"
-  } else {
-    img = "/images/not_found.png"
-  }
-  return img;
-})
-
 </script>
 
 <template>
   <div
       :class="ManufacturerMap[make]"
-      class="flex flex-row justify-between flex-wrap px-24 py-8 shadow-lg rounded-lg items-center self-center
+      class="flex flex-col justify-between px-24 py-8 shadow-lg rounded-lg items-center self-center
       align-middle border-2 bg-slate-100 border-emerald-900"
   >
-    <div class="flex flex-col gap-2">
-      <h1 class="font-bold text-xl">{{ moto.make }} {{ moto.model }} {{ moto.year }}</h1>
-      <p><span class="font-bold">Type:</span> {{ moto.type }}</p>
-      <p><span class="font-bold">Engine:</span> {{ moto.engine }}</p>
-      <p v-if="moto.power != undefined"><span class="font-bold">Power:</span> {{ moto.power }}</p>
-    </div>
-    <div class="items-center self-center align-middle">
-      <nuxt-img :src="imageSrc" class="h-36 w-auto"/>
-    </div>
+    <slot />
   </div>
 </template>
-
-<style scoped>
-
-</style>
