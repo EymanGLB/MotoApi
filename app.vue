@@ -10,7 +10,8 @@
 </script>
 
 <template>
-  <Button :uppercase="true" @click="toggleTheme" color="indigo" class="transition-all duration-1000">
+  <nav class="flex flex-row justify-between mx-5">
+  <Button :uppercase="true" @click="toggleTheme" color="indigo" class="transition-all duration-500">
     <div class="w-6" v-if="colorMode.preference === 'dark'">
       <nuxt-img src="/images/dark-mode.svg"/>
     </div>
@@ -18,6 +19,10 @@
       <nuxt-img src="/images/light-mode.svg" />
     </div>
   </Button>
+  <Button :uppercase="true" color="pink">
+    <NuxtLink to="/">Go Back</NuxtLink>
+  </Button>
+  </nav>
   <NuxtLayout>
     <NuxtPage/>
   </NuxtLayout>

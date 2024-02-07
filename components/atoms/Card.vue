@@ -24,7 +24,7 @@ const ManufacturerMap = {
 
 <template>
   <div
-      :class="ManufacturerMap[make]"
+      :class="ManufacturerMap[make.toLowerCase()]"
       class="flex flex-col justify-between px-24 py-8 shadow-lg rounded-lg items-center self-center
       align-middle border-2 bg-slate-100 border-emerald-900"
   >

@@ -12,8 +12,6 @@ const apiKey = 'Srpk00NbahDC/8YxaLT6yQ==20HPS9HVhdI6rBcw'
 const headers = {
   'X-Api-Key': apiKey
 }
-
-
 const handleFormSubmit = (values) => {
   manufacturer.value = values.manufacturer
   model.value = values.model
@@ -24,6 +22,7 @@ const handleFormSubmit = (values) => {
 
 async function getMoto() {
   const api = `https://api.api-ninjas.com/v1/motorcycles?make=${manufacturer.value}&model=${model.value}`
+  console.log("api index ", api)
   isLoading.value = true;
   try {
     const response = await fetch(api, {headers});
@@ -31,7 +30,7 @@ async function getMoto() {
   } catch (error) {
     console.error('Error fetching data:', error);
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
 }
 </script>

@@ -32,6 +32,13 @@ const imageSrc = computed(() => {
   return img;
 })
 
+const id = computed(() => {
+  return `${props.moto.model}-${props.moto.make}-${props.moto.year}`
+})
+
+const goToMotoDetails = () => {
+  navigateTo({path: `/moto/${id.value}`})
+}
 </script>
 
 <template>
@@ -48,8 +55,9 @@ const imageSrc = computed(() => {
         <nuxt-img :src="imageSrc" class="h-36 w-auto"/>
       </div>
     </div>
-    <Button tag-type="a" color="indigo">
-      <NuxtLink to="">Learn more</NuxtLink>
+    <Button tag-type="a" color="emerald">
+      {{console.log(`https://api.api-ninjas.com/v1/motorcycles?make=${moto.make}&model=${moto.model}&year=${moto.year}&offset=1`)}}
+      <NuxtLink :to="`/moto/${id}`">Learn more</NuxtLink>
     </Button>
   </Card>
 </template>
