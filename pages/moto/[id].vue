@@ -34,7 +34,8 @@ const {data: motoApiObj} = await useAsyncData('motoApiObj', async () => {
 moto.value = motoApiObj.value
 
 onMounted(() => {
-  console.log(moto.value, api, motoObject)
+  console.log(moto.value, api, motoObject ," --MotoPageID-- ")
+  console.log(moto.value[0])
 })
 </script>
 

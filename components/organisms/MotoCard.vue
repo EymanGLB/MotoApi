@@ -43,7 +43,7 @@ const goToMotoDetails = () => {
 
 <template>
   <Card :moto="props.moto" :make="make">
-    <div class="flex flex-col lg:flex-row justify-between items-center self-center
+    <div class="flex flex-col lg:flex-row lg:gap-4 justify-between items-center self-center
       align-middle">
       <div class="flex flex-col gap-2">
         <h1 class="font-bold text-xl">{{ moto.make }} {{ moto.model }} {{ moto.year }}</h1>
@@ -56,7 +56,7 @@ const goToMotoDetails = () => {
       </div>
     </div>
     <Button tag-type="a" color="emerald">
-      {{console.log(`https://api.api-ninjas.com/v1/motorcycles?make=${moto.make}&model=${moto.model}&year=${moto.year}&offset=1`)}}
+      {{console.log(`https://api.api-ninjas.com/v1/motorcycles?make=${moto.make}&model=${moto.model}&year=${moto.year}&offset=1`, " -- MotoCard")}}
       <NuxtLink :to="`/moto/${id}`">Learn more</NuxtLink>
     </Button>
   </Card>

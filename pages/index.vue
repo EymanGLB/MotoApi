@@ -33,14 +33,18 @@ async function getMoto() {
     isLoading.value = false
   }
 }
+
+const handleClear = () => {
+  motos.value = {}
+}
 </script>
 
 <template>
   <div>
-    <Form @submitMoto="handleFormSubmit"/>
+    <Form @submitMoto="handleFormSubmit" @clearMoto="handleClear"/>
     <div class="flex flex-col justify-between gap-10 mx-5 py-10">
       <div v-if="isLoading" class="flex flex-col w-full justify-center items-center">
-        <Spinner />
+        <Spinner/>
       </div>
       <div v-for="(moto, index) in motos" :key="index">
         <MotoCard :moto="moto"/>
