@@ -4,7 +4,16 @@ import Spinner from "~/components/atoms/Spinner.vue";
 import MotoCard from "~/components/organisms/MotoCard.vue";
 import { useMotoApi } from "~/composables/MotoApi";
 
-const { isLoading, motos, shouldReset, getMotos, modifyManufacturer, modifyModel, modifyReset } = useMotoApi();
+const {
+  isLoading,
+  motos,
+  getMotos,
+  showError,
+  modifyManufacturer,
+  modifyModel,
+  modifyReset,
+  modifyShowError
+} = useMotoApi();
 
 const handleFormSubmit = async (values) => {
   modifyManufacturer(values.manufacturer);
@@ -13,12 +22,18 @@ const handleFormSubmit = async (values) => {
   modifyManufacturer('');
   modifyModel('');
   modifyReset(true)
+  if (motos.value.length == 0) {
+    modifyShowError(true)
+  }
 }
+
 
 const handleClear = () => {
   motos.value = {}
   modifyReset(true)
+  modifyShowError(false)
 }
+
 </script>
 
 <template>
@@ -28,8 +43,12 @@ const handleClear = () => {
       <div v-if="isLoading" class="flex flex-col w-full justify-center items-center">
         <Spinner />
       </div>
+
       <div v-for="(moto, index) in motos" :key="index">
         <MotoCard :moto="moto" />
+      </div>
+      <div v-show="showError">
+        <p>Error message</p>
       </div>
     </div>
   </div>

@@ -2,14 +2,16 @@ export const useMotoApi = () => {
   const manufacturer = ref("");
   const model = ref("");
   const shouldReset = ref(false);
+  const showError = ref(false)
 
   const motos = ref([]);
+  // API
   const apiKey = "Srpk00NbahDC/8YxaLT6yQ==20HPS9HVhdI6rBcw";
   const headers = {
     "X-Api-Key": apiKey,
   };
   const isLoading = ref(false);
-
+  // Get all
   async function getMotos() {
     const api = `https://api.api-ninjas.com/v1/motorcycles?make=${manufacturer.value}&model=${model.value}`;
     console.log("API INDEX ", api);
@@ -23,31 +25,12 @@ export const useMotoApi = () => {
       isLoading.value = false;
     }
   }
-
-  // TODO: Fix this and make it work and refactor
-  async function getMoto(api: string) {
-    const response = await fetch(api, { headers });
-    if (!response.ok) throw new Error("Could not load moto");
-    return await response.json();
-  }
-  const motoInfo = ref(null);
-  let apiMotoSingle = "";
-  function modifyApi(api: string) {
-    apiMotoSingle = api;
-  }
-
-  async function getMotoInfo() {
-    try {
-      const response = await fetch(apiMotoSingle, { headers });
-      if (!response.ok) {
-        throw new Error("Could not load moto");
-      }
-      motoInfo.value = await response.json();
-    } catch (err) {
-      console.log("ERROR: ", err);
-    } finally {
-      isLoading.value = false;
-    }
+  // Get single moto
+  function getMoto(api: string) {
+    const { data, pending, error } = useAsyncData(api, () =>
+      $fetch(api, { headers })
+    );
+    return { data, pending, error };
   }
 
   function modifyManufacturer(newManufacturer: string) {
@@ -62,16 +45,22 @@ export const useMotoApi = () => {
     shouldReset.value = newReset;
   }
 
+  function modifyShowError(newBool: boolean) {
+    showError.value = newBool
+  }
+
   return {
     isLoading,
     manufacturer,
     model,
     motos,
     shouldReset,
+    showError,
     getMotos,
     getMoto,
     modifyManufacturer,
     modifyModel,
     modifyReset,
+    modifyShowError
   };
 };
