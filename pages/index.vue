@@ -27,7 +27,6 @@ const handleFormSubmit = async (values) => {
   }
 }
 
-
 const handleClear = () => {
   motos.value = {}
   modifyReset(true)
@@ -37,6 +36,9 @@ const handleClear = () => {
 </script>
 
 <template>
+  <AtomsErrorMsg v-show="showError">
+    No se han encontrado resultados
+  </AtomsErrorMsg>
   <div>
     <Form @submitMoto="handleFormSubmit" @clearMoto="handleClear" />
     <div class="flex flex-col justify-between gap-10 mx-5 py-10">
@@ -46,9 +48,6 @@ const handleClear = () => {
 
       <div v-for="(moto, index) in motos" :key="index">
         <MotoCard :moto="moto" />
-      </div>
-      <div v-show="showError">
-        <p>Error message</p>
       </div>
     </div>
   </div>
