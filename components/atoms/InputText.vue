@@ -23,7 +23,8 @@ const emit = defineEmits(['update:modelValue'])
 // Wathc for changes on the shouldReset value
 watch(() => props.shouldReset, (newValue) => {
   if (newValue) {
-    // Reset the input value when the prop is true
+    emit('update:modelValue', '');
+    // Reset the input value when shouldReset is true
     localValue.value = '';
   }
 });

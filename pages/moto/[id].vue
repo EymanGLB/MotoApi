@@ -1,45 +1,51 @@
 <script setup lang="ts">
-import {useAsyncData, useRoute} from "#app";
-import Spinner from "~/components/atoms/Spinner.vue";
-import Card from "~/components/atoms/Card.vue";
+import { useRoute } from "#app";
+import { useMotoApi } from '~/composables/MotoApi'
+
+const {  } = useMotoApi();
 
 const route = useRoute()
 const routeParams = route.params
-let motoObject = {
-  make: '',
-  model: '',
-  year: ''
-}
+console.log("ROUTE PARAMS: ", routeParams)
 
 const isLoading = ref(false)
-let moto = ref()
-// get the api info
-let a = routeParams.id.toString().split('-')
-motoObject.make = a.at(2)!
-motoObject.model = a.at(0)!
-motoObject.year = a.at(3)!
 
-const apiKey = 'Srpk00NbahDC/8YxaLT6yQ==20HPS9HVhdI6rBcw'
-const headers = {
-  'X-Api-Key': apiKey
+let keys: string[] = []
+
+const KeysObject = {
+  make: '',
+  model: '',
+  year: '',
 }
 
-const api = `https://api.api-ninjas.com/v1/motorcycles?make=${motoObject.make}&model=${motoObject.model}&year=${motoObject.year}&offset=1`
+const getInfoFromURL = (routeParams: string) => {
+  let separatedURL = routeParams.split('-')
+  console.log("URL Separated ", separatedURL)
+  separatedURL.forEach((arrIndex) => {
+    let split = arrIndex.split(':')
+    let key = split[0]
+    let name = split[1]
 
-const {data: motoApiObj} = await useAsyncData('motoApiObj', async () => {
-  const response = await fetch(api, {headers})
-  if (!response.ok) throw new Error('Could not load moto')
-  return response.json()
-})
-moto.value = motoApiObj.value
+    if (key == 'MAKE')
+      KeysObject.make = name
+    else if (key == 'MODEL')
+      KeysObject.model = name
+    else if (key == 'YEAR')
+      KeysObject.year = name
+    //keys.push(arrIndex.split(':').at(1)!)
+  })
+}
 
-onMounted(() => {
-  console.log(moto.value, api, motoObject ," --MotoPageID-- ")
-  console.log(moto.value[0])
-})
+
+getInfoFromURL(routeParams.id.toString())
+console.log('KEYS 3', KeysObject)
+const api = `https://api.api-ninjas.com/v1/motorcycles?make=${KeysObject.make}&model=${KeysObject.model}&year=${KeysObject.year}&offset=1`
+
 </script>
 
 <template>
+  {{ api }}
+  <!--
   <div v-if="isLoading || moto[0] == undefined" class="self-center">
     <Spinner/>
   </div>
@@ -55,8 +61,7 @@ onMounted(() => {
       </div>
     </Card>
   </div>
+  -->
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

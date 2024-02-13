@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import Card from "~/components/atoms/Card.vue";
 
@@ -33,7 +32,7 @@ const imageSrc = computed(() => {
 })
 
 const id = computed(() => {
-  return `${props.moto.model}-${props.moto.make}-${props.moto.year}`
+  return `MODEL:${props.moto.model}-MAKE:${props.moto.make}-YEAR:${props.moto.year}`
 })
 
 const goToMotoDetails = () => {
