@@ -28,7 +28,11 @@ const props = defineProps({
   }
 })
 
-const colorMap = {
+type CustomMap = {
+ [key: string]: string;
+};
+
+const colorMap: CustomMap = {
   emerald: "text-emerald-950 bg-emerald-500 hover:bg-emerald-700 hover:text-emerald-200 dark:text-emerald-200 dark:bg-emerald-800 hover:dark:text-emerald-800 hover:dark:bg-emerald-200",
   red: "text-red-950 bg-red-500 hover:bg-red-700 hover:text-red-200 dark:text-red-200 dark:bg-red-800 hover:dark:text-red-800 hover:dark:bg-red-200",
   cyan: "text-cyan-950 bg-cyan-500 hover:bg-cyan-700 hover:text-cyan-200 dark:text-cyan-200 dark:bg-cyan-800 hover:dark:text-cyan-800 hover:dark:bg-cyan-200",
@@ -41,7 +45,7 @@ const colorMap = {
   violet: "text-violet-950 bg-violet-500 hover:bg-violet-700 hover:text-violet-200 dark:text-violet-200 dark:bg-violet-800 hover:dark:text-violet-800 hover:dark:bg-violet-200"
 }
 
-const sizeMap = {
+const sizeMap: CustomMap = {
   small: 'px-2 py-1 text-sm',
   medium: 'px-4 py-2 text-md',
   large: 'px-6 py-3 text-lg',
